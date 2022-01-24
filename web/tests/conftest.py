@@ -1,4 +1,8 @@
+from multiprocessing import Process
+
 import pytest
+
+from web.app import create_app
 
 pytestmark = [
     pytest.mark.integration_test,
@@ -6,5 +10,17 @@ pytestmark = [
 
 
 @pytest.fixture
-def base_url():
-    return 'http://localhost:8000'
+def port():
+    return 5000
+
+
+@pytest.fixture
+def app_url(port):
+    a = create_app()
+    process = Process(target=a.run, kwargs=dict(port=port))
+    process.start()
+
+    yield f'http://localhost:{port}'
+
+    process.terminate()
+    process.join()

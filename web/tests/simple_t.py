@@ -1,8 +1,13 @@
 import requests as requests
 
 
-def returns_404__if_requested_invalid_url_t(base_url):
-    r = requests.get(base_url + '/invalid')
+def returns_404__if_requested_invalid_url_t(app_url):
+    r = requests.get(app_url + '/invalid')
 
     assert r.status_code == 404
-    assert False, 'wip'
+
+
+def returns_200__if_requested_liveness_url_t(app_url):
+    r = requests.get(app_url + '/live')
+
+    assert r.status_code == 200
