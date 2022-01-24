@@ -17,7 +17,7 @@ def port():
 
 @pytest.fixture
 def app_url(port):
-    a = create_app()
+    a = create_app(pytest=True)
     process = Process(target=a.run, kwargs=dict(port=port))
     process.start()
 

@@ -1,7 +1,7 @@
 from flask import Flask, request
 
 
-def create_app(pytest=True):
+def create_app(pytest=False):
     app = Flask(__name__)
 
     @app.post("/correlation")
