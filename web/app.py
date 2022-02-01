@@ -8,6 +8,8 @@ correlation_engine = None
 
 def create_app(_correlation_engine=None):
     app = Flask(__name__)
+    if 'PYTEST_CURRENT_TEST' in os.environ:
+        app.testing = True
     global correlation_engine
     correlation_engine = _correlation_engine
 
