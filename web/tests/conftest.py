@@ -23,11 +23,11 @@ def correlation_engine():
 
 @pytest.fixture
 def app_url(port, correlation_engine):
-    a = create_app(correlation_engine)
-    process = Process(target=a.run, kwargs={'port': port})
+    flask_app = create_app(correlation_engine)
+    process = Process(target=flask_app.run, kwargs={'port': port})
     process.start()
 
-    yield AppURL(f'http://localhost:{port}')
+    yield AppURL(f'http://localhost:{port}', flask_app)
 
     process.terminate()
     process.join()
