@@ -36,7 +36,7 @@ class AppURL:
 
 @pytest.fixture
 def app_url(port):
-    a = create_app(pytest=True)
+    a = create_app()
     process = Process(target=a.run, kwargs=dict(port=port))
     process.start()
 

@@ -1,9 +1,11 @@
+import os
+
 from flask import Flask, abort
 
 data = None
 
 
-def create_app(pytest=False):
+def create_app():
     app = Flask(__name__)
 
     @app.get("/correlation")
@@ -26,7 +28,7 @@ def create_app(pytest=False):
         data = True
         abort(404)
 
-    if pytest:
+    if 'PYTEST_CURRENT_TEST' in os.environ:
         @app.get("/live")
         def live():
             return ''
