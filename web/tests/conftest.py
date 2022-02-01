@@ -37,7 +37,7 @@ class AppURL:
 @pytest.fixture
 def app_url(port):
     a = create_app()
-    process = Process(target=a.run, kwargs=dict(port=port))
+    process = Process(target=a.run, kwargs={'port': port})
     process.start()
 
     yield AppURL(f'http://localhost:{port}')
