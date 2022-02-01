@@ -1,4 +1,5 @@
 from multiprocessing import Process
+from unittest.mock import Mock
 
 import pytest
 
@@ -16,8 +17,13 @@ def port():
 
 
 @pytest.fixture
-def app_url(port):
-    a = create_app()
+def correlation_engine():
+    return Mock()
+
+
+@pytest.fixture
+def app_url(port, correlation_engine):
+    a = create_app(correlation_engine)
     process = Process(target=a.run, kwargs={'port': port})
     process.start()
 
