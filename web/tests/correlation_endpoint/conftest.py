@@ -5,7 +5,10 @@ import pytest
 
 @pytest.fixture
 def simple_input():
-    return json.loads("""{}""")
+    return {
+        'x_data_type': 'test',
+        'y_data_type': 'test',
+    }
 
 
 @pytest.fixture
