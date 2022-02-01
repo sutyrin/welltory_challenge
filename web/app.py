@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, abort
 
 
 def create_app(pytest=False):
@@ -6,7 +6,7 @@ def create_app(pytest=False):
 
     @app.post("/correlation")
     def correlation():
-        return {}
+        abort(404)
 
     if pytest:
         @app.get("/live")

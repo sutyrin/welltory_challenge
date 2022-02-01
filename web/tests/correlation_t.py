@@ -1,8 +1,7 @@
 import requests as requests
 
 
-def returns_right_result_for_simple_case_t(app_url, simple_input, simple_output):
-    r = requests.post(app_url + '/correlation', json=simple_input)
+def returns_404__if_no_data_present_t(app_url, not_present_input):
+    r = requests.post(app_url + '/correlation', json=not_present_input)
 
-    assert r.status_code == 200
-    assert r.json() == simple_output
+    assert r.status_code == 404

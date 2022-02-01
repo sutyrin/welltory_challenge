@@ -51,6 +51,11 @@ def simple_input():
 
 
 @pytest.fixture
+def not_present_input(simple_input):
+    return simple_input
+
+
+@pytest.fixture
 def simple_output():
     return json.loads(""" {
         "user_id": 1,
